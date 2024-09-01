@@ -1,0 +1,26 @@
+Write a code in vhdl for 4:1 multiplexer
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity mux4_1 is
+    port (
+        i0, i1, i2, i3 : in std_logic;
+        s : in std_logic_vector(1 downto 0);
+        y : out std_logic
+    );
+end entity mux4_1;
+
+architecture behavioral of mux4_1 is
+begin
+    process (i0, i1, i2, i3, s)
+    begin
+        case s is
+            when "00" => y <= i0;
+            when "01" => y <= i1;
+            when "10" => y <= i2;
+            when "11" => y <= i3;
+            when others => y <= 'X'; -- For invalid select signals
+        end case;
+    end process;
+end architecture behavioral;
